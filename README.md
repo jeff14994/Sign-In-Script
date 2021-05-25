@@ -33,8 +33,8 @@
         - crontab test by [crontab-1330](https://crontab.guru/#30_13_*_*_1-5) 
     - [Mac 使用 crontab 排錯](https://willy2016.pixnet.net/blog/post/218458338-mac-linux-crontab-%E7%84%A1%E6%B3%95%E5%9C%A8-shell-%E4%B8%AD%E5%9F%B7%E8%A1%8C-python%EF%BC%8C%E5%87%BA%E7%8F%BE) 
 ## Disclaimer
+- 先說：沒打到卡與我無關XD
 - 純方便打卡使用，要自己確定有打到卡。
-- 沒打到卡與我無關XD
-- 建議可以在收信時是否是正確的時間，是的話才真正有打到卡！
-- 確認如下：
+- 建議可以在收信時確認是否收到正確的時間，是的話才真正有打到卡！
+- 確認如下：(紅色匡起來是打卡時間)
     ![](https://i.imgur.com/0iHsw5c.png)
