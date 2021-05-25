@@ -7,11 +7,11 @@ from sendEmail import send_email
 from datetime import datetime
 
 load_dotenv()
-qrcode = os.environ.get('QRCODE')
+qrcode_link = os.environ.get('QRCODE_LINK')
 student_name = os.environ.get('NAME')
 
 # Start request
-url = 'https://manage.iiiedu.org.tw/api/class/remoteAttendance?qrcode=' + qrcode
+url = qrcode_link
 res = requests.get(url)
 
 # Response from web

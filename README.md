@@ -6,12 +6,12 @@
 
 ## 使用教學
 - Step1: 更改 .env.example 成 .env，並且修改內部內容
-    - QRCODE = XXX -> XXX 改成資策會提供的連結
+    - QRCODE_LINK = XXX -> XXX 改成資策會提供的連結
     - NAME = XXX -> XXX 改成你的姓名
     - GMAIL_SENDER_EMAIL = XXX -> XXX 改成你的寄信 Email
     - GMAIL_RECEIVER_EMAIL = XXX -> XXX 改成改成你的收信 Email
     - GMAIL_PASSWORD = XXX -> XXX 改成下面教學拿到的密碼
-         - 因為會使用到 Google 的 Gmail 所以要去申請自己 Gmail 權限的密碼
+         - 因為會使用到 Google 的 Gmail ，所以要去申請自己 Gmail 權限的密碼
         - [教學 - 下半部](https://lininu.blogspot.com/2017/09/NodeJSSendMailService.html)  
 - Step2: 記得安裝 dotenv, requests, bs4(BeautifulSoup) 套件
 - Step3: [使用 crontab](https://serverfault.com/questions/94351/how-to-disable-everything-in-crontab-l)
