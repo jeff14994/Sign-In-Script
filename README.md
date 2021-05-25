@@ -20,7 +20,8 @@
         - crontab test by [crontab-0900](https://crontab.guru/#30_13_*_*_1-5)
     - Usage:
         ```bash=
-        vim my_cron.txt and put the following text in my_cron.txt
+        # Create my_cron.txt and put the following text in my_cron.txt
+        vim my_cron.txt 
         0 9 * * 1-5 /usr/bin/python ~/sign/signIn.py >> ~/sign/cron.log 2>&1
         30 13 * * 1-5 /usr/bin/python ~/sign/signIn.py >> ~/sign/cron.log 2>&1
 
