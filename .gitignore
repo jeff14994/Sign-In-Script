@@ -3,4 +3,4 @@
 *_pycache__
 *.txt
 test*
-*cron
+cron.*
