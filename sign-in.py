@@ -1,6 +1,15 @@
 import requests
+import os
 from bs4 import BeautifulSoup
-# url = 'https://manage.iiiedu.org.tw/api/class/remoteAttendance?qrcode='
+from dotenv import load_dotenv
+
+load_dotenv()
+qrcode = os.environ.get('QRCODE')
+student_name = os.environ.get('NAME')
+# print(qrcode)
+# print(student_name)
+# Start request
+url = 'https://manage.iiiedu.org.tw/api/class/remoteAttendance?qrcode=' + qrcode
 # res = requests.get(url)
 
 # print(res.text)
@@ -29,10 +38,10 @@ body{
 
 </body>
 """
-soup = BeautifulSoup(response, 'html.parser')
+# Response from web
+soup = BeautifulSoup(res, 'html.parser')
 p_tag = soup.find_all('p')
 class_name = 'AI 人工智慧創新應用就業養成班'
-student_name = '洪裕權'
 # 資料前處理
 response_class = p_tag[0].text[5:]
 response_name = p_tag[1].text[5:]
