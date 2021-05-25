@@ -5,7 +5,7 @@
 - 戳完後，會寄 Email 提醒你已簽到打卡
 
 ## 使用教學
-- Step1: 更改 .env.example 的內容 
+- Step1: 更改 .env.example 成 .env，並且修改內部內容
     - QRCODE = XXX -> XXX 改成資策會提供的連結
     - NAME = XXX -> XXX 改成你的姓名
     - GMAIL_SENDER_EMAIL = XXX -> XXX 改成你的寄信 Email
