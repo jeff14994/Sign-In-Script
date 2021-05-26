@@ -1,5 +1,7 @@
 # Sign-in Script
-https://img.shields.io/github/languages/top/jeff14994/Sign-In-Script?logo=Python&logoColor=green
+![GitHub top language](https://img.shields.io/github/languages/top/jeff14994/Sign-In-Script?logo=Python&logoColor=green)
+![GitHub repo size](https://img.shields.io/github/repo-size/jeff14994/Sign-In-Script?logo=Github)
+![GitHub last commit](https://img.shields.io/github/last-commit/jeff14994/Sign-In-Script?logo=Github)
 
 ## [資策會]自動化簽到系統
 - 定時早上 0900 與 下午 0130 會去戳上課簽到系統的 API 
