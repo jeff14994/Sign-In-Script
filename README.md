@@ -19,8 +19,13 @@
     - GMAIL_RECEIVER_EMAIL = XXX -> XXX 改成改成你的收信 Email
     - GMAIL_PASSWORD = XXX -> XXX 改成下面教學拿到的密碼
          - 因為會使用到 Google 的 Gmail ，所以要去申請自己 Gmail 權限的密碼
-        - [教學 - 下半部](https://lininu.blogspot.com/2017/09/NodeJSSendMailService.html)  
-- Step2: 記得安裝 dotenv, requests, bs4(BeautifulSoup) 套件
+        - [教學 - 下半部](https://lininu.blogspot.com/2017/09/NodeJSSendMailService.html) 
+    - Webex
+        - WEBEX_NAME = XXX -> XXX 改成你的姓名
+        - WEBEX_EMAIL = XXX -> XXX 改成你的信箱
+- Step2: 
+    - 記得安裝 dotenv, requests, bs4(BeautifulSoup), webdriver套件
+    - 下載 [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)，並放在根目錄
 - Step3: [使用 crontab](https://serverfault.com/questions/94351/how-to-disable-everything-in-crontab-l)
     - Usage:
         ```bash=
@@ -44,4 +49,4 @@
 - 純方便打卡使用，要自己確定有打到卡。
 - 建議可以在收信時確認是否收到正確的時間，是的話才真正有打到卡！
 - 確認如下：(紅色匡起來是打卡時間)
-    ![](https://i.imgur.com/0iHsw5c.png)
+<img src="https://i.imgur.com/0iHsw5c.png" width="500">
