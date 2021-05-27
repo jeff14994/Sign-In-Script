@@ -13,34 +13,9 @@ student_name = os.environ.get('NAME')
 
 # Start request
 url = qrcode_link
-# res = requests.get(url)
-response = """
-<style type="text/css">
-bg-img {
-    background: url('/qrcode/remote_attendance.png');
-    background-size:     contain;
-    background-repeat:   no-repeat;
-    background-position: center center;     
-}
-.text {
-    text-align: center;
-    font-size: 50px;
-}
-body{
-    font-family: "Microsoft JhengHei"!important;
-}
-</style>
-<body>
-    <div>
-        <p class="text">課程名稱：AI 人工智慧創新應用就業養成班</p>
-        <p class="text">學生姓名：洪裕權</p>
-        <p class="text">刷卡時間：2021-05-25 07:59:04</p> 
-            </div>
-
-</body>
-"""
+res = requests.get(url)
 # Response from web
-soup = BeautifulSoup(response, 'html.parser')
+soup = BeautifulSoup(res.text, 'html.parser')
 p_tag = soup.find_all('p')
 class_name = 'AI 人工智慧創新應用就業養成班'
 
