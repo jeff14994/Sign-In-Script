@@ -4,12 +4,15 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/jeff14994/Sign-In-Script?logo=Github)
 
 ## [資策會]自動化簽到系統
-- 自動打卡
-    - 定時早上 0900 與 下午 0130 會去戳上課簽到系統的 API 
-    - 戳完後，會寄 Email 提醒你已簽到打卡
-- 自動登入 Webex
-   
-  ![v3](https://user-images.githubusercontent.com/30124826/119886965-213ac080-bf66-11eb-88fb-fa4a73984bb9.gif)
+- 基本上，會幫你做到兩件事
+    - 自動打卡
+        - 定時早上 0900 與 下午 0130 會去戳上課簽到系統的 API 
+        - 戳完後，會寄 Email 提醒你已簽到打卡
+    - 自動登入 Webex
+       - 定時早上 0900 與 下午 0130 上線 Webex
+       - 登入 15 分鐘後自動登出（點名完跳掉 Webex，比較不會佔資源）
+       
+      ![v3](https://user-images.githubusercontent.com/30124826/119886965-213ac080-bf66-11eb-88fb-fa4a73984bb9.gif)
 
 ## 使用教學
 - Step1: 更改 .env.example 成 .env，並且修改內部內容
