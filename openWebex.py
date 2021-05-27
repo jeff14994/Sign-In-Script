@@ -39,8 +39,8 @@ def control_webex():
     # Start action
     start_meeting_actions.perform()
     # Turn off the video after 15 minutes
-    # sleep(900)
-    sleep(5)
+    sleep(900)
+    # sleep(5)
     driver.close()
 if __name__ == '__main__':
     control_webex()
