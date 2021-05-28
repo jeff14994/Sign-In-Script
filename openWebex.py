@@ -12,20 +12,24 @@ name = os.environ.get('WEBEX_NAME')
 email = os.environ.get('WEBEX_EMAIL')
 
 def control_webex():
-    driver = webdriver.Chrome('./chromedriver')
+    # Load driver
+    driver = webdriver.Chrome(executable_path='./chromedriver')
     driver.implicitly_wait(10)
     driver.maximize_window()
+    # Make requests
     driver.get(meeting_link)
     sleep(3)
-    # Input username and email
+    #  === Input username and email ===
     actions = ActionChains(driver)
     actions.send_keys(name)
     actions.send_keys(Keys.TAB)
     actions.send_keys(email)
     actions.pause(3)
     actions.send_keys(Keys.ENTER)
+    # === Input username and email - Start action ===
     actions.perform()
     sleep(2)
+    # === Configure setting before entering meeting ===
     start_meeting_actions = ActionChains(driver)
     # Mute the sound
     start_meeting_actions.send_keys(Keys.TAB * 4)
@@ -36,11 +40,12 @@ def control_webex():
     # Join Meeting
     start_meeting_actions.send_keys(Keys.TAB * 8)
     start_meeting_actions.send_keys(Keys.ENTER)
-    # Start action
+    # === Configure setting before entering meeting - Start action ===
     start_meeting_actions.perform()
     # Turn off the video after 15 minutes
-    sleep(900)
-    # sleep(5)
-    driver.close()
+    # sleep(900)
+    # Stop for 7.5 hours
+    sleep(27000)
+    # driver.close()
 if __name__ == '__main__':
     control_webex()

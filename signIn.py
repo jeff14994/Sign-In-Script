@@ -24,10 +24,12 @@ response_class = p_tag[0].text[5:]
 response_name = p_tag[1].text[5:]
 response_time = p_tag[2].text
 if (response_class == class_name and response_name == student_name):
-    print(datetime.now())
+    print('現在時間: ', datetime.now())
     print('打卡成功！')
-    print(response_time)
+    print('打卡時間: ', response_time)
+    print('寄送開啟打卡時間 Email')
     send_email(response_time)
-    print('正在開啟 Webex')
+    print('寄送開啟 Webex Email')
+    send_email('已開啟 Webex')
     control_webex()
     print('正在關閉 Webex')
