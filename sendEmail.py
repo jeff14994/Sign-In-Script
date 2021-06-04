@@ -1,6 +1,8 @@
 import smtplib
 import os
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
 from email.header import Header
 from dotenv import load_dotenv
 
@@ -25,19 +27,37 @@ receiverEmail = receiver
 #Send Email As Plain Text
 #message = MIMEText("Test Send Email By Python", "plain", "utf-8")
 
-def send_email(time):
-	#Send Email in HTML Format
-	mail_msg = """
-	<p>親愛的學員 """ + student_name +""" 您好：</p>
-	<p><b>"""+ time +"""</b></p>
-	"""
-	message = MIMEText(mail_msg, 'html', 'utf-8')
+def send_email(time, status=0):
+	# Send Email in HTML Format
+	if status == '1':
+		mail_msg = """
+		<p>親愛的學員 """ + student_name +""" 您好：</p>
+		<p><b>"""+ time +"""</b></p>
+		"""
+		# Get image
+		img_path = './drive_snapshot/6.4/'
+		img_file = 'daily_6.4_3_登入後_13:29:4.png'
+		img_path += img_file
+		
+		with open(img_path, 'rb') as fp:
+			img_data = fp.read()
+		message = MIMEMultipart()
+		image = MIMEImage(img_data, name=os.path.basename(img_path))
+		message.attach(MIMEText(mail_msg, 'html', 'utf-8'))
+	
+		message.attach(image)
+	else:
+		mail_msg = """
+		<p>親愛的學員 """ + student_name +""" 您好：</p>
+		<p><b>"""+ time +"""</b></p>
+		"""
+		message = MIMEMultipart()
+		message.attach(MIMEText(mail_msg, 'html', 'utf-8'))
 	message['From'] = Header("歡迎使用 @x0mg 登入系統", "utf-8")
 	message['To'] = Header("親愛的同學", "utf-8")
 	subject = "[資策會]AI養成班課程遠距簽到 打卡成功"
 	message['Subject'] = Header(subject, "utf-8")
-	#smtpObj = smtplib.SMTP( [host [, post [, local_hostname]]])
-
+	
 	try:
 		#smtpObj = smtplib.SMTP(smtpHost, smtpPort)
 		smtpObj = smtplib.SMTP(smtpHost, smtpPort)

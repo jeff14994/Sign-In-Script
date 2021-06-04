@@ -4,14 +4,13 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from time import sleep, time, ctime
+from time import sleep, time, localtime
 from selenium.webdriver.chrome.options import Options
 
 load_dotenv()
 meeting_link = os.environ.get('MEETING_LINK')
 name = os.environ.get('WEBEX_NAME')
 email = os.environ.get('WEBEX_EMAIL')
-snapshot_path = '/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign/drive_snapshot/'
 def control_webex():
     # 0 open the browser, 1 for headless
     status = '0'
@@ -23,6 +22,25 @@ def control_webex():
     chrome_options.add_argument("--start-maximized")
     # Load driver
     path = '/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign/chromedriver'
+    # Use try to make outter dir
+    try:
+        os.makedirs('drive_snapshot')
+    # If file exists, show below
+    except FileExistsError:
+        # print("dir exists")
+        pass
+    # Use try to make inner dir
+    date = localtime(time())
+    file_name = str(date.tm_mon) + '.' + str(date.tm_mday) + '/'
+    # Create directory daily
+    snapshot_path = '/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign/drive_snapshot/'
+    snapshot_path += file_name
+    try:
+        os.makedirs('drive_snapshot/' + file_name)
+    # If file exists, show below
+    except FileExistsError:
+        # print("dir exists")
+        pass
     if status == '0':
         driver = webdriver.Chrome(executable_path=path)
         driver.implicitly_wait(10)
@@ -31,9 +49,10 @@ def control_webex():
         driver.get(meeting_link)
         sleep(3)
         # Screenshot
-        local_time = ctime(time())
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '1_登入前_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
         print('Screenshot...1...Before_login')
-        driver.get_screenshot_as_file(snapshot_path + 'daily-1-登入前-' + local_time + '-.png') #截圖格式和存放地址
+        driver.get_screenshot_as_file(snapshot_path + file_name)
         #  === Input username and email ===
         actions = ActionChains(driver)
         actions.send_keys(name)
@@ -44,12 +63,10 @@ def control_webex():
         # === Input username and email - Start action ===
         actions.perform()
         # Screenshot
-        # 從 1970/1/1 00:00:00 至今的秒數
-        seconds = time()
-        # 將秒數轉為本地時間
-        local_time = ctime(seconds)
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '2_輸入名字_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
         print('Screenshot...2...Enter_credentials')
-        driver.get_screenshot_as_file(snapshot_path + 'daily-2-輸入名字-' + local_time + '-.png') #截圖格式和存放地址
+        driver.get_screenshot_as_file(snapshot_path + file_name)
         sleep(3)
         # === Configure setting before entering meeting ===
         start_meeting_actions = ActionChains(driver)
@@ -66,16 +83,25 @@ def control_webex():
         start_meeting_actions.perform()
         # Screenshot
         sleep(5)
-        # 從 1970/1/1 00:00:00 至今的秒數
-        seconds = time()
-        # 將秒數轉為本地時間
-        local_time = ctime(seconds)
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '3_登入後_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
         print('Screenshot...3...Enter_the_meeting')
-        driver.get_screenshot_as_file(snapshot_path + 'daily-3-登入後-' + local_time + '-.png') #截圖格式和存放地址
+        driver.get_screenshot_as_file(snapshot_path + file_name)
+        # === See all participants ===
+        see_participants_actions = ActionChains(driver)
+        see_participants_actions.send_keys(Keys.TAB * 20)
+        see_participants_actions.send_keys(Keys.ENTER)
+        # === See all participants - Start action ===
+        see_participants_actions.perform()
+        # Snapshot
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '4_所有登入者_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
+        print('Screenshot...4...See_all_participants')
+        driver.get_screenshot_as_file(snapshot_path + file_name)
         # Turn off the video after 15 minutes
         # sleep(900)
         # Stop for 7.5 hours
-        sleep(10)
+        sleep(9000)
         driver.close()
     else: 
         driver = webdriver.Chrome(executable_path=path, options=chrome_options)
