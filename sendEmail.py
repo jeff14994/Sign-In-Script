@@ -1,5 +1,8 @@
-import smtplib
 import os
+import re
+import glob
+import smtplib
+from time import localtime, time
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
@@ -27,16 +30,32 @@ receiverEmail = receiver
 #Send Email As Plain Text
 #message = MIMEText("Test Send Email By Python", "plain", "utf-8")
 
-def send_email(time, status=0):
+def send_email(sign_time, status=0):
 	# Send Email in HTML Format
 	if status == '1':
 		mail_msg = """
-		<p>親愛的學員 """ + student_name +""" 您好：</p>
-		<p><b>"""+ time +"""</b></p>
+		<p>親愛的學員 """ + student_name + """ 您好：</p>
+		<p><b>""" + sign_time + """</b></p>
+		<h4>大家簽到狀況：</h4>
 		"""
 		# Get image
-		img_path = './drive_snapshot/6.4/'
-		img_file = 'daily_6.4_3_登入後_13:29:4.png'
+		date = localtime(time())
+		month = str(date.tm_mon)
+		day = str(date.tm_mday)
+		# Get image path 
+		img_path = './drive_snapshot/' +  month + '.' + day + '/'
+		# print(img_path)
+		# Set get image rule
+		re_rule = 'daily_' + month + '.' + day + '_4'
+		re_rule += '*.png'
+		# print(re_rule)
+		# files = [f for f in os.listdir(img_path) if re.match(r'[daily_6.4_1*.png]', f)]
+		# files = [f for f in os.listdir(img_path) ]
+		files = glob.glob(img_path + re_rule + '*')
+		# print(files[0])
+		# Select image name
+		img_file = files[0].split('/')[-1]
+		# print(img_file)
 		img_path += img_file
 		
 		with open(img_path, 'rb') as fp:
@@ -48,8 +67,8 @@ def send_email(time, status=0):
 		message.attach(image)
 	else:
 		mail_msg = """
-		<p>親愛的學員 """ + student_name +""" 您好：</p>
-		<p><b>"""+ time +"""</b></p>
+		<p>親愛的學員 """ + student_name + """ 您好：</p>
+		<p><b>""" + sign_time + """</b></p>
 		"""
 		message = MIMEMultipart()
 		message.attach(MIMEText(mail_msg, 'html', 'utf-8'))
@@ -73,4 +92,4 @@ def send_email(time, status=0):
 		# print str(error)
 		print ("Error: Cannot Send Email")
 if __name__ == '__main__':
-	send_email('Input time here!')
+	send_email('Input time here!', '1')

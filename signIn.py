@@ -32,6 +32,6 @@ if (response_class == class_name and response_name == student_name):
     sleep(15)
     send_email(response_time)
     print('寄送開啟 Webex Email')
-    send_email('已開啟 Webex')
+    send_email('已開啟 Webex', '1')
     control_webex()
     print('正在關閉 Webex')

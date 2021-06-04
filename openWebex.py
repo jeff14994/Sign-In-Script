@@ -21,7 +21,7 @@ def control_webex():
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument("--start-maximized")
     # Load driver
-    path = '/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign/chromedriver'
+    path = './chromedriver'
     # Use try to make outter dir
     try:
         os.makedirs('drive_snapshot')
@@ -29,7 +29,7 @@ def control_webex():
     except FileExistsError:
         # print("dir exists")
         pass
-    # Use try to make inner dir
+    # Use try to make inner dir (Rule: By date)
     date = localtime(time())
     file_name = str(date.tm_mon) + '.' + str(date.tm_mday) + '/'
     # Create directory daily
@@ -41,6 +41,7 @@ def control_webex():
     except FileExistsError:
         # print("dir exists")
         pass
+    # 0 open the browser, 1 for headless
     if status == '0':
         driver = webdriver.Chrome(executable_path=path)
         driver.implicitly_wait(10)
