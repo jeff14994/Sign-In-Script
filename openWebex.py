@@ -23,9 +23,10 @@ def control_webex():
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument("--start-maximized")
     # Change to sigin directory
-    working_directory = os.environ.get('WORKING_PATH')
-    os.chdir(working_directory)
-    driver_path = os.getcwd() + '/chromedriver'
+    working_directory = os.environ.get('CHROMEDRIVER_PATH')
+    driver_path = working_directory
+    # os.chdir(working_directory)
+    # driver_path = os.getcwd() + '/chromedriver'
     print("Chromedrive working directory:", driver_path)
     snapshot_path = './drive_snapshot/'
     # Use try to make outter dir
