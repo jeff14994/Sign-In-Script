@@ -1,4 +1,4 @@
-#!/Users/hungyuchuan/opt/anaconda3/bin/python
+# #!/Users/hungyuchuan/opt/anaconda3/bin/python
 import requests
 import os
 from bs4 import BeautifulSoup
@@ -29,9 +29,7 @@ if (response_class == class_name and response_name == student_name):
     print('打卡成功！')
     print('打卡時間: ', response_time)
     print('寄送開啟打卡時間 Email')
-    sleep(15)
     send_email(response_time)
     print('寄送開啟 Webex Email')
-    send_email('已開啟 Webex', '1')
     control_webex()
     print('正在關閉 Webex')

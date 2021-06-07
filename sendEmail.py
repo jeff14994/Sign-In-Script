@@ -32,6 +32,7 @@ receiverEmail = receiver
 
 def send_email(sign_time, status=0):
 	# Send Email in HTML Format
+	# status = 1 -> send image; status = 0 -> send without image
 	if status == '1':
 		mail_msg = """
 		<p>親愛的學員 """ + student_name + """ 您好：</p>
@@ -42,6 +43,7 @@ def send_email(sign_time, status=0):
 		date = localtime(time())
 		month = str(date.tm_mon)
 		day = str(date.tm_mday)
+		hour = str(date.tm_hour)
 		# Get image path 
 		img_path = './drive_snapshot/' +  month + '.' + day + '/'
 		# print(img_path)
@@ -53,8 +55,13 @@ def send_email(sign_time, status=0):
 		# files = [f for f in os.listdir(img_path) ]
 		files = glob.glob(img_path + re_rule + '*')
 		# print(files[0])
-		# Select image name
-		img_file = files[0].split('/')[-1]
+		# Choose to send afternoon image or morning image
+		if hour == "13":
+			# Select image name
+			img_file = files[1].split('/')[-1]
+		else:
+			# Select image name
+			img_file = files[0].split('/')[-1]
 		# print(img_file)
 		img_path += img_file
 		
@@ -72,6 +79,7 @@ def send_email(sign_time, status=0):
 		"""
 		message = MIMEMultipart()
 		message.attach(MIMEText(mail_msg, 'html', 'utf-8'))
+	# Add subject to email
 	message['From'] = Header("歡迎使用 @x0mg 登入系統", "utf-8")
 	message['To'] = Header("親愛的同學", "utf-8")
 	subject = "[資策會]AI養成班課程遠距簽到 打卡成功"
