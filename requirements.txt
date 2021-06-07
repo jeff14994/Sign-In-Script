@@ -5,3 +5,5 @@ tzlocal==2.0.0
 selenium==3.141.0
 bs4
 python-dotenv==0.10.1
+requests
+# glob
