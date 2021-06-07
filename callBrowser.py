@@ -125,7 +125,6 @@ def headless_browser(driver_path, snapshot_path, name, email, meeting_link, chro
     date = localtime(time())
     file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '4_所有登入者_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
     print('Screenshot...4...See_all_participants')
-    snapshot_path = snapshot_path + file_name
     driver.get_screenshot_as_file(snapshot_path + file_name)
     # Send email
     send_email('已開啟 Webex', '1')

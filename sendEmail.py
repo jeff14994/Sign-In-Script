@@ -53,8 +53,9 @@ def send_email(sign_time, status=0):
 		# print(re_rule)
 		# files = [f for f in os.listdir(img_path) if re.match(r'[daily_6.4_1*.png]', f)]
 		# files = [f for f in os.listdir(img_path) ]
-		files = glob.glob(img_path + re_rule + '*')
-		# print(files[0])
+		# Sort glob by last modified time
+		files = sorted(glob.glob(img_path + re_rule + '*', ), key=os.path.getmtime)
+		# print(files)
 		# Choose to send afternoon image or morning image
 		if hour == "13":
 			try:

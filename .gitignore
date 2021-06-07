@@ -9,3 +9,4 @@ cron.*
 *youtube
 drive_snapshot
 *.png
+python-cron*
