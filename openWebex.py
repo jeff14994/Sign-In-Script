@@ -22,6 +22,8 @@ def control_webex():
     chrome_options.add_argument('--headless')  
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
     # Change to sigin directory
     working_directory = os.environ.get('CHROMEDRIVER_PATH')
     driver_path = working_directory
