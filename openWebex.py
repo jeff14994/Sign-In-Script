@@ -46,7 +46,7 @@ def control_webex():
         # print("dir exists")
         pass
     # 0 open the browser, 1 for headless
-    if status == '0':
+    if status == '1':
         # Load driver
         driver = webdriver.Chrome(executable_path=driver_path)
         driver.implicitly_wait(10)
@@ -115,15 +115,18 @@ def control_webex():
         driver.close()
     else: 
         # TODO: Fix the headless browser
-        driver = webdriver.Chrome(executable_path=path, options=chrome_options)
+        # Load driver
+        driver = webdriver.Chrome(executable_path=driver_path, options=chrome_options)
         driver.implicitly_wait(10)
         driver.maximize_window()
         # Make requests
         driver.get(meeting_link)
         sleep(3)
         # Screenshot
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '1_登入前_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
         print('Screenshot...1...Before_login')
-        driver.get_screenshot_as_file('/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign/daily1-登入前.png') #截圖格式和存放地址
+        driver.get_screenshot_as_file(snapshot_path + file_name)
         #  === Input username and email ===
         actions = ActionChains(driver)
         actions.send_keys(name)
@@ -134,9 +137,10 @@ def control_webex():
         # === Input username and email - Start action ===
         actions.perform()
         # Screenshot
-        # sleep(3)
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '2_輸入名字_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
         print('Screenshot...2...Enter_credentials')
-        driver.get_screenshot_as_file('/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign/daily2-輸入名字.png') #截圖格式和存放地址
+        driver.get_screenshot_as_file(snapshot_path + file_name) #截圖格式和存放地址
         sleep(3)
         # === Configure setting before entering meeting ===
         start_meeting_actions = ActionChains(driver)
@@ -145,16 +149,32 @@ def control_webex():
         start_meeting_actions.send_keys(Keys.ENTER)
         # === Configure setting before entering meeting - Start action ===
         start_meeting_actions.perform()
-
         # Screenshot
         sleep(5)
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '3_登入後_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
         print('Screenshot...3...Enter_the_meeting')
-        driver.get_screenshot_as_file('/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign/daily3-登入後.png') #截圖格式和存放地址
+        driver.get_screenshot_as_file(snapshot_path + file_name)
+        # === See all participants ===
+        see_participants_actions = ActionChains(driver)
+        see_participants_actions.send_keys(Keys.ENTER)
+        see_participants_actions.send_keys(Keys.TAB * 34)
+        see_participants_actions.send_keys(Keys.ENTER)
+        # === See all participants - Start action ===
+        see_participants_actions.perform()
+        # Snapshot
+        date = localtime(time())
+        file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '4_所有登入者_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
+        print('Screenshot...4...See_all_participants')
+        snapshot_path = snapshot_path + file_name
+        driver.get_screenshot_as_file(snapshot_path + file_name)
+        # Send email
+        send_email('已開啟 Webex', '1')
         # Turn off the video after 15 minutes
-        sleep(900)
+        # sleep(900)
         # Stop for 7.5 hours
-        # sleep(27000)
-        sleep(10)
+        sleep(900)
         driver.close()
+        
 if __name__ == '__main__':
     control_webex()

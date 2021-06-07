@@ -1,4 +1,3 @@
-# #!/Users/hungyuchuan/opt/anaconda3/bin/python
 import requests
 import os
 from bs4 import BeautifulSoup
