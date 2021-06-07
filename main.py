@@ -1,6 +1,4 @@
 from datetime import datetime
-import os
-from selenium import webdriver
 from signIn import sign_in
 from sendEmail import send_email
 
@@ -13,3 +11,4 @@ def cronjob():
     print("Tick! The time is: %s" % datetime.now())
     # sign_in()
     send_email('omg', '0')
+cronjob()
