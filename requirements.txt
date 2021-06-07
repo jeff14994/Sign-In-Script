@@ -4,6 +4,6 @@ six==1.12.0
 tzlocal==2.0.0
 selenium==3.141.0
 bs4
-dotenv
+dotenv==0.17.1 
 glob 
 smtplib
