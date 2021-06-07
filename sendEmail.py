@@ -57,8 +57,11 @@ def send_email(sign_time, status=0):
 		# print(files[0])
 		# Choose to send afternoon image or morning image
 		if hour == "13":
-			# Select image name
-			img_file = files[1].split('/')[-1]
+			try:
+				# Select image name
+				img_file = files[1].split('/')[-1]
+			except:
+				print('No image in the morning!')
 		else:
 			# Select image name
 			img_file = files[0].split('/')[-1]
