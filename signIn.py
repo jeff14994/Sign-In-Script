@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from sendEmail import send_email
 from datetime import datetime
 from openWebex import control_webex
-from time import sleep
 
 load_dotenv()
 qrcode_link = os.environ.get('QRCODE_LINK')
