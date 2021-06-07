@@ -1,7 +1,7 @@
 from datetime import datetime
 # from signIn import sign_in
 from sendEmail import send_email
-from openWebex import headless_browser
+from openWebex import control_webex
 
 def cronjob():
     """
@@ -13,5 +13,5 @@ def cronjob():
     print("Signing in ...")
     # sign_in()
     # send_email('omg', '0')
-    headless_browser()
+    control_webex()
 cronjob()
