@@ -1,6 +1,7 @@
 from datetime import datetime
-from signIn import sign_in
+# from signIn import sign_in
 from sendEmail import send_email
+from openWebex import headless_browser
 
 def cronjob():
     """
@@ -9,6 +10,8 @@ def cronjob():
     """
     print("Cron job is running")
     print("Tick! The time is: %s" % datetime.now())
+    print("Signing in ...")
     # sign_in()
-    send_email('omg', '0')
+    # send_email('omg', '0')
+    headless_browser()
 cronjob()

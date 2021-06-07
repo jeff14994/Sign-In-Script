@@ -14,15 +14,16 @@ name = os.environ.get('WEBEX_NAME')
 email = os.environ.get('WEBEX_EMAIL')
 def control_webex():
     # 0 open the browser, 1 for headless
-    status = '0'
+    status = '1'
     # Configure headless settings
     WINDOW_SIZE = "1920,1080"
     chrome_options = Options() 
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument('--headless')  
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument("--start-maximized")
     # Change to sigin directory
-    working_directory = "/Users/hungyuchuan/Desktop/近期代辦/資策會課程/sign"
+    working_directory = os.environ.get('WORKING_PATH')
     os.chdir(working_directory)
     driver_path = os.getcwd() + '/chromedriver'
     print("Chromedrive working directory:", driver_path)
