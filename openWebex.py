@@ -14,7 +14,7 @@ name = os.environ.get('WEBEX_NAME')
 email = os.environ.get('WEBEX_EMAIL')
 def control_webex():
     # 0 open the browser, 1 for headless
-    status = '1'
+    status = '0'
     # Configure headless settings
     WINDOW_SIZE = "1920,1080"
     chrome_options = Options() 

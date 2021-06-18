@@ -12,7 +12,7 @@ def normal_browser(driver_path, snapshot_path, name, email, meeting_link):
     driver.maximize_window()
     # Make requests
     driver.get(meeting_link)
-    sleep(3)
+    sleep(5)
     # Screenshot
     date = localtime(time())
     file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '1_登入前_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
@@ -55,7 +55,7 @@ def normal_browser(driver_path, snapshot_path, name, email, meeting_link):
     # === See all participants ===
     see_participants_actions = ActionChains(driver)
     see_participants_actions.send_keys(Keys.ENTER)
-    see_participants_actions.send_keys(Keys.TAB * 23)
+    see_participants_actions.send_keys(Keys.TAB * 25)
     see_participants_actions.send_keys(Keys.ENTER)
     # === See all participants - Start action ===
     see_participants_actions.perform()
@@ -63,14 +63,14 @@ def normal_browser(driver_path, snapshot_path, name, email, meeting_link):
     date = localtime(time())
     file_name = 'daily_' + str(date.tm_mon) + '.' + str(date.tm_mday) + '_' + '4_所有登入者_' + str(date.tm_hour)  + ':' + str(date.tm_min) + ':' + str(date.tm_sec) + '.png'
     print('Screenshot...4...See_all_participants')
-    snapshot_path = snapshot_path + file_name
+    # snapshot_path = snapshot_path + file_name
     driver.get_screenshot_as_file(snapshot_path + file_name)
     # Send email
     send_email('已開啟 Webex', '1')
     # Turn off the video after 15 minutes
-    sleep(900)
+    # sleep(900)
     # Stop for 7.5 hours
-    # sleep(27000)
+    sleep(27000)
     driver.close()
 
 def headless_browser(driver_path, snapshot_path, name, email, meeting_link, chrome_options):
